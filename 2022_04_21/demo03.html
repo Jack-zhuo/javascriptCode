@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>hello java</h1>
+    <script src="./lib/jquery-3.6.0.js"></script>
+    <script>
+        var a = 0;
+        setInterval(function () {
+            a++;
+            console.log(a);
+            $.post("http://www.liulongbin.top:3006/api/addcmt", "username=%E5%8D%93%E8%B6%8A&content=%E5%A4%B1%E8%B4%A5%E5%8F%AA%E6%9C%89%E4%B8%80%E7%A7%8D%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%8D%8A%E9%80%94%E8%80%8C%E5%BA%9F%EF%BC%81%EF%BC%81%EF%BC%81",
+                function (res) {
+                    if (res.status !== 201)
+                        return alert("发表评论失败。。");
+                    
+                }
+            );
+        }, 5000)
+    </script>
+</body>
+
+</html>

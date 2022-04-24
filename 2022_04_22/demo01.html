@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container"></div>
+
+
+    <script src="./lib/jquery-3.6.0.js"></script>
+    <script src="./lib/template-web.js"></script>
+    <script type="text/html" id="tpl">
+        <div id="title">{{@ title}}</div>
+        <div>姓名:<span id="name">{{name}}</span></div>
+        <div>年龄:<span id="age">{{age}}</span></div>
+        <div>爱好:<span id="hobby">{{hobby}}</span></div>
+        <div>注册时间：<span id="regTime">{{regTime | filterA}}</span></div>
+        <div>
+            {{if flag === 1}}
+              flag's value is 1;
+            {{else}}
+              flag's value not is 1;
+            {{/if}}
+
+            {{each hobby}}
+              {{$index}}  {{$value}}
+            {{/each}}
+        </div>
+    </script>
+    <script>
+        template.defaults.imports.filterA = function(e){
+            y = e.getFullYear();
+            m = e.getMonth()+1;
+            d = e.getDate();
+
+            return y+'-'+m+'-'+d;
+          };
+        var data = {
+            title: '<h3>用户信息</h3>',
+            name: 'zs',
+            age: 20,
+            test: '<h3>测试原文输出</h3>',
+            flag: 1,
+            hobby: ['吃饭', '睡觉', '写代码'],
+            regTime: new Date(),
+            flag:3
+        }
+        let a = template('tpl',data);
+        
+        $('#container').html(a);
+
+    </script>
+</body>
+
+</html>
