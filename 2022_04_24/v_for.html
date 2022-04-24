@@ -7,6 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="app">
+          <ul>
+              <li v-for="(it,item) in arr">
+                   {{item}} 超实用技能 {{it}}
+              </li>
+          </ul>
+    </div>
+    <script src="../lib/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                arr:["英语","编程","写作","投资"], 
+                vegetables:[
+                {name:"卓越"},
+                {name:"侯莹莹"}
+                ]
+            }
+        })
+    </script>
 </body>
 </html>
