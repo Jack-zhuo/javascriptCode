@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>post and get</title>
+</head>
+<body>
+<div id="btn">
+    <button id="btn1" @click="getGet">get request</button>
+    <button id="btn2" @click="getPost">post request</button>
+    <button id="btn3" @click="getDelete">delete request</button>
+    <div>
+        <h1>My name is {{ name }}, I am {{ age }} years old.</h1>
+    </div>
+</div>
+<script src="./lib/vue.js"></script>
+<script src="lib/axios.min.js"></script>
+<script>
+    const app = new Vue({
+        el:'#btn',
+        data:{
+            name:"zhuoyue",
+            age:0
+        },
+        methods:{
+            getGet:function (){
+                console.log("you click me..")
+                axios.get('http://127.0.0.1/api/get?name=卓越&age=22')
+                .then((res)=>{
+                    console.log(res.data.data.name);
+                    console.log(this.name)
+                    this.name = res.data.data.name;
+                    this.age = res.data.data.age;
+                });
+            },
+            getPost:function () {
+                axios.post('http://127.0.0.1/api/post',{username:"zy"})
+                .then((res)=>{
+                    console.log(res);
+                })
+            },
+            getDelete:function () {
+                axios.delete('http://127.0.0.1/api/delete')
+                .then(
+                    (res)=>{
+                        console.log(res);
+                    }
+                )
+            }
+        }
+    });
+</script>
+</body>
+</html>

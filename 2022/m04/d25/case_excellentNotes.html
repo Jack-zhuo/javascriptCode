@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            list-style: none;
+        }
+        #note{
+           
+            background-color: rgb(240, 240, 240);
+            height: 600px;
+            width: 400px;
+            margin: 200px auto 0px;
+        }
+        #title{
+          width: 400px;
+          height: 200px;
+
+          font-size: 60px;
+          text-align: center;
+          line-height: 200px;
+        }
+        #content{ 
+            margin-left: 5px;
+            width: 390px;
+            height: 350px;
+            background-color: rgb(255, 255, 255);
+            overflow-y:auto;
+            
+        }
+        .new-todo{
+            margin: 20px;
+            height: 30px;
+            width: 320px;
+        }
+        .todo{
+            margin-left: 10px;
+            margin-top: 30px;
+            border-bottom: 1px solid black;
+        }
+        #footer{
+            margin-left: 5px;
+            width: 390px;
+            height:40px;
+            background-color: rgb(189, 189, 189);
+            margin-top: 5px;
+        }
+        #clearAll{
+           margin-left: 200px;
+           margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="note">
+        
+       <div id="title">卓越记事本</div>
+       
+       <div id="content">
+         <input class="new-todo" v-model="inputValue" @keyup.enter="add" />
+         <ul>
+             <li class="todo" v-for="(item,index) in list " >
+                 <span class="index">{{ index }}</span>
+                 <label>{{ item }}</label>
+                 <button class="destroy" @click="remove(index)">删除</button>
+            </li>
+         </ul>
+       </div>
+       
+       <div id="footer">
+           total:{{ list.length }}
+           <button @click="clearAll" id="clearAll">clear all</button>
+       </div>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el:"#note",
+            data:{
+               list:["write code...","learn English...","learn algorithms..."],
+               inputValue: "Study knowledge"
+            },
+            methods:{
+              add:function(){
+                  this.list.push(this.inputValue);
+              },
+              remove:function(index){
+                  this.list.splice(index,1);
+              },
+              clearAll:function(){
+                  this.list = [];
+              }
+            }
+        })
+    </script>
+</body>
+</html>

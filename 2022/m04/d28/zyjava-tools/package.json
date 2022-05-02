@@ -1,0 +1,8 @@
+{
+    "name": "zyjava-tools",
+    "version": "1.0.0",
+    "main": "index.js",
+    "description": "providing Dateformat,htmlescape relevant functions",
+    "keywords": ["zyjava","dateFormat","escape"],
+    "license": "ISC"
+}
