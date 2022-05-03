@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        姓名：<input type="text" v-model.trim="name">
+        <hr/>
+        年龄：<input type="text" v-model.number="age">
+        <hr/>
+        姓名：<input type="text" v-model.lazy="address">
+        <hr/>
+        <button @click="flag = !flag">切换</button>
+        <p v-if="flag">简单</p>
+        <p v-show="!flag">留白</p>
+        <p>{{ proverbs }}</p>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+       const app = new Vue({
+            el:'#app',
+            data:{
+                name:'请输入姓名。',
+                age:1,
+                address:"现在：安徽三联学院；将来：南京大学",
+                flag:true,
+                proverbs:"你怎么度过疫情，你就会怎么度过一生。"
+            }
+        })
+    </script>
+</body>
+</html>

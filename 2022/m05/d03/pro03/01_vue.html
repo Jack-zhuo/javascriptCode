@@ -1,10 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <style>
+        .outer{
+           width: 300px;
+           height: 300px;
+           position: relative;
+           background-color: skyblue;
+        }
+        .inner{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            background-color: pink;
+        }
+    </style>
 </head>
+
 <body>
-$END$
+    <div id="app">
+        <p v-text="age"></p>
+        <div v-html="desc"></div>
+        <input :placeholder="desc">
+        <button @click="addCount(2,$event)">+1</button>
+        <p>=====================================================</p>
+        <a href="http://www.baidu.com" @click.prevent="onLinkClick">www.baidu.com</a>
+        <div class="outer" @click="Outer">
+            <div class="inner" @click.stop="Inner">
+                 不要抠脸了，求求我自己了，呜呜呜呜呜呜
+            </div>
+        </div>
+        <div @click.once="Inner" style="background-color: pink;width: 600px;">现在脖子有点痛，哎~~~~</div>
+        <p>=====================================================</p>
+        <p>用户名是：{{ name }}</p>
+        <input v-model="name" />
+        <p>您选中的省份是：{{ province}}</p>
+        <select v-model="province">
+            <option value="">请选择</option>
+            <option value="1">北京</option>
+            <option value="2">上海</option>
+            <option value="3">北京</option>
+            <option value="4">广州</option>
+        </select>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                name: "卓越",
+                age: 22,
+                desc: '<i>万幸且公平的是，在智力上，知识上，经验上，复利效应都是存在的。</i>',
+                province:1
+            },
+            methods: {
+                addCount(v, e) {
+                    e.target.style.backgroundColor = e.target.style.backgroundColor === 'red' ? '' : 'red';
+                    this.age += v;
+                },
+                onLinkClick() {
+                    console.log("click click click...");
+                },
+                Inner(){
+                    console.log("click inner");
+                },
+                Outer(){
+                    console.log("click outer");
+                }
+            },
+        })
+    </script>
 </body>
+
 </html>
