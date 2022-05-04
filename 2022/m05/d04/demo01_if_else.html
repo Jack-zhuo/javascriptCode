@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p v-if="type === 'A'">优秀</p>
+        <p v-else-if="type === 'B'">良好</p>
+        <p v-else-if="type === 'C'">及格</p>
+        <p v-else>差</p>
+        <hr/>
+        <ul>
+            <li v-for="(user, index) in list">
+               {{ index }}号, 姓名是：{{ user.name }}
+            </li>
+        </ul>
+         
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                type:'B',
+                list:[
+                {id:1,name:'卓越'},
+                {id:2,name:'莹莹'},
+                {id:3,name:'马涛'},
+                {id:4,name:'卓岩'},
+                {id:1,name:'卓志方'},
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
